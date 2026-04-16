@@ -1,0 +1,95 @@
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+.task-table th,
+.task-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.task-table th {
+  background: #2c3e50;
+  color: white;
+}
+
+.completed {
+  color: green;
+  font-weight: bold;
+}
+
+.pending {
+  color: orange;
+  font-weight: bold;
+}
+
+button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+/* Common button style */
+button {
+  padding: 6px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Common button */
+button {
+  padding: 6px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+/* Softer Green */
+.complete-btn {
+  background-color: #c5e4d2;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.complete-btn:hover {
+  background-color: #d5f5e3;
+}
+
+/* Softer Red */
+.delete-btn {
+  background-color: #dbbdba;
+  color: #c0392b;
+  border: 1px solid #f5c6cb;
+}
+
+.delete-btn:hover {
+  background-color: #f9d6d5;
+}
+/* Highlight high priority rows */
+.high-priority-row {
+  background-color: #fff4f4; /* soft red */
+}
+
+/* Optional hover */
+.high-priority-row:hover {
+  background-color: #fde2e2;
+}
+.view-btn {
+  background-color: #eef2ff;
+  color: #3f51b5;
+  border: 1px solid #c5cae9;
+}
+
+.view-btn:hover {
+  background-color: #e0e7ff;
+}

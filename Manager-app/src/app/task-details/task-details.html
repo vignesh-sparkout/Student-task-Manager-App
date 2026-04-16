@@ -1,0 +1,53 @@
+<div class="card">
+
+  <h2>Task Detail</h2>
+
+  <!-- VIEW MODE -->
+  <div *ngIf="!isEdit">
+
+    <p><strong>Title:</strong> {{ task.title }}</p>
+    <p><strong>Assigned To:</strong> {{ task.assignedTo }}</p>
+    <p><strong>Priority:</strong> {{ task.priority }}</p>
+    <p><strong>Due Date:</strong> {{ task.dueDate }}</p>
+    <p><strong>Status:</strong> {{ task.status }}</p>
+
+    <div class="actions">
+      <button class="edit-btn" (click)="enableEdit()">Edit</button>
+      <button class="back-btn" (click)="goBack()">Back</button>
+    </div>
+
+  </div>
+
+  <!-- EDIT MODE -->
+  <div *ngIf="isEdit">
+
+    <label>Title</label>
+    <input [(ngModel)]="task.title" />
+
+    <label>Assigned To</label>
+    <input [(ngModel)]="task.assignedTo" />
+
+    <label>Priority</label>
+    <select [(ngModel)]="task.priority">
+      <option>High</option>
+      <option>Medium</option>
+      <option>Low</option>
+    </select>
+
+    <label>Due Date</label>
+    <input type="date" [(ngModel)]="task.dueDate" />
+
+    <label>Status</label>
+    <select [(ngModel)]="task.status">
+      <option>Completed</option>
+      <option>Pending</option>
+    </select>
+
+    <div class="actions">
+      <button class="save-btn" (click)="saveTask()">Save</button>
+      <button class="back-btn" (click)="isEdit=false">Cancel</button>
+    </div>
+
+  </div>
+
+</div>

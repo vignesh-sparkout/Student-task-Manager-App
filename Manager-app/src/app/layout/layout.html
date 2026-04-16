@@ -1,0 +1,18 @@
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Manager App</h2>
+    <ul>
+      <li routerLink="/dashboard" routerLinkActive="active">Dashboard</li>
+      <li routerLink="/tasks" routerLinkActive="active">Task List</li>
+      <li (click)="logout()">Logout</li>
+    </ul>
+  </div>
+
+  <!-- Dynamic Content -->
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
