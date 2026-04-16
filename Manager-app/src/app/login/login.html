@@ -1,0 +1,18 @@
+<section class="login-page">
+  <div class="login-card">
+    <h2>Login</h2>
+    <p class="subtitle">Enter your details </p>
+
+    <label class="field-label" for="username">Username</label>
+    <input id="username" [(ngModel)]="username" placeholder="Enter username" />
+
+    <label class="field-label" for="password">Password</label>
+    <input
+      id="password"
+      [(ngModel)]="password"
+      type="password"
+      placeholder="Enter password"
+    />
+    <button type="button" (click)="login()">Login</button>
+  </div>
+</section>
