@@ -26,10 +26,10 @@ export class TaskList implements OnInit {
     status: 'Pending'
   };
 
-  // 🔹 FINAL TASK LIST (STATIC + LOCAL)
+  //  FINAL TASK LIST (STATIC + LOCAL)
   tasks: any[] = [];
 
-  // 🔹 4 DEFAULT TASKS (ONLY ON FIRST LOAD)
+  // DEFAULT TASKS (ONLY ON FIRST LOAD)
   defaultTasks = [
     {
       id: 101,
@@ -50,7 +50,7 @@ export class TaskList implements OnInit {
     {
       id: 103,
       title: 'API Integration',
-      assignedTo: 'Kumar',
+      assignedTo: 'Vicky',
       priority: 'High',
       dueDate: '2026-04-22',
       status: 'Pending'
@@ -105,6 +105,17 @@ export class TaskList implements OnInit {
   viewTask(task: any) {
     this.router.navigate(['/task', task.id]);
   }
+  //Edit Task
+  isEditMode = false;
+editingTaskId: number | null = null;
+
+editTask(task: any) {
+  this.isEditMode = true;
+  this.showForm = true;
+  this.editingTaskId = task.id;
+
+  this.newTask = { ...task }; // pre-fill form
+}
 
   markComplete(task: any) {
     task.status = 'Completed';
