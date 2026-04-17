@@ -22,7 +22,16 @@
       <div class="row">
         <div class="field">
           <label>Priority</label>
-          <p>{{ task.priority }}</p>
+          <p
+            class="priority-badge"
+            [ngClass]="{
+              'high': task.priority === 'High',
+              'medium': task.priority === 'Medium',
+              'low': task.priority === 'Low'
+            }"
+          >
+            {{ task.priority }}
+          </p>
         </div>
 
         <div class="field">
@@ -34,7 +43,15 @@
       <div class="row">
         <div class="field full">
           <label>Status</label>
-          <p>{{ task.status }}</p>
+          <p
+            class="status-badge"
+            [ngClass]="{
+              'pending': task.status === 'Pending',
+              'completed': task.status === 'Completed'
+            }"
+          >
+            {{ task.status }}
+          </p>
         </div>
       </div>
 
@@ -45,7 +62,7 @@
 
     </div>
 
-    <!-- EDIT MODE (FIXED - NO ALIGNMENT CHANGE) -->
+    <!-- EDIT MODE -->
     <div *ngIf="isEdit" class="edit-mode">
 
       <form #taskForm="ngForm">
@@ -53,62 +70,95 @@
         <div class="row">
           <div class="field">
             <label>Title</label>
-            <input [(ngModel)]="task.title" name="title" required #title="ngModel"
-              [ngClass]="{'invalid': title.invalid && title.touched}" />
+            <input
+              [(ngModel)]="task.title"
+              name="title"
+              required
+              #title="ngModel"
+              [ngClass]="{ 'invalid': title.invalid && title.touched }"
+            />
             <small *ngIf="title.invalid && title.touched">Title is required</small>
           </div>
 
           <div class="field">
             <label>Assigned To</label>
-            <input [(ngModel)]="task.assignedTo" name="assignedTo" required #assignedTo="ngModel"
-              [ngClass]="{'invalid': assignedTo.invalid && assignedTo.touched}" />
-            <small *ngIf="assignedTo.invalid && assignedTo.touched">Assigned To is required</small>
+            <input
+              [(ngModel)]="task.assignedTo"
+              name="assignedTo"
+              required
+              #assignedTo="ngModel"
+              [ngClass]="{ 'invalid': assignedTo.invalid && assignedTo.touched }"
+            />
+            <small *ngIf="assignedTo.invalid && assignedTo.touched">
+              Assigned To is required
+            </small>
           </div>
         </div>
 
         <div class="row">
           <div class="field">
             <label>Priority</label>
-            <select [(ngModel)]="task.priority" name="priority" required #priority="ngModel"
-              [ngClass]="{'invalid': priority.invalid && priority.touched}">
+            <select
+              [(ngModel)]="task.priority"
+              name="priority"
+              required
+              #priority="ngModel"
+              [ngClass]="{ 'invalid': priority.invalid && priority.touched }"
+            >
               <option value="" disabled>Select the Priority</option>
               <option>High</option>
               <option>Medium</option>
               <option>Low</option>
             </select>
-            <small *ngIf="priority.invalid && priority.touched">Priority is required</small>
+            <small *ngIf="priority.invalid && priority.touched">
+              Priority is required
+            </small>
           </div>
 
           <div class="field">
             <label>Due Date</label>
-            <input type="date" [(ngModel)]="task.dueDate" name="dueDate" required #dueDate="ngModel"
-              [ngClass]="{'invalid': dueDate.invalid && dueDate.touched}" />
-            <small *ngIf="dueDate.invalid && dueDate.touched">Due Date is required</small>
+            <input
+              type="date"
+              [(ngModel)]="task.dueDate"
+              name="dueDate"
+              required
+              #dueDate="ngModel"
+              [ngClass]="{ 'invalid': dueDate.invalid && dueDate.touched }"
+            />
+            <small *ngIf="dueDate.invalid && dueDate.touched">
+              Due Date is required
+            </small>
           </div>
         </div>
 
         <div class="row">
           <div class="field full">
             <label>Status</label>
-            <select [(ngModel)]="task.status" name="status" required #status="ngModel"
-              [ngClass]="{'invalid': status.invalid && status.touched}">
+            <select
+              [(ngModel)]="task.status"
+              name="status"
+              required
+              #status="ngModel"
+              [ngClass]="{ 'invalid': status.invalid && status.touched }"
+            >
               <option value="" disabled>Select the Status</option>
               <option>Pending</option>
               <option>Completed</option>
             </select>
-            <small *ngIf="status.invalid && status.touched">Status is required</small>
+            <small *ngIf="status.invalid && status.touched">
+              Status is required
+            </small>
           </div>
         </div>
 
       </form>
 
-      <!-- BUTTONS OUTSIDE FORM (IMPORTANT FOR ALIGNMENT FIX) -->
       <div class="actions">
         <button class="save-btn" [disabled]="taskForm.invalid" (click)="saveTask(taskForm)">
           Save
         </button>
 
-        <button class="cancel-btn" type="button" (click)="isEdit=false">
+        <button class="cancel-btn" type="button" (click)="goBack()">
           Cancel
         </button>
       </div>
