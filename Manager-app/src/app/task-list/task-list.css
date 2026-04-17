@@ -160,3 +160,7 @@ small {
 .task-table tbody tr:hover {
   background-color: #f9f9f9;
 }
+.task-table {
+  margin: 20px auto;   
+  max-width: 100%;
+}

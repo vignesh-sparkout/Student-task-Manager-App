@@ -14,8 +14,7 @@ export class LayoutComponent {
   
   constructor (private auth:AuthService){}
 
-  logout(){
-    this.auth.logout();
-  }
-
+  logout() {
+  this.auth.logout();
+}
 }

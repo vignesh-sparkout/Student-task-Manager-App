@@ -1,18 +1,45 @@
-<div class="container">
+<div class="layout">
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>Manager App</h2>
-    <ul>
-      <li routerLink="/dashboard" routerLinkActive="active">Dashboard</li>
-      <li routerLink="/tasks" routerLinkActive="active">Task List</li>
-      <li (click)="logout()">Logout</li>
-    </ul>
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+    <h2 class="logo">Student Tasks</h2>
+
+
+<ul class="menu">
+  <li routerLink="/dashboard" routerLinkActive="active">Dashboard</li>
+  <li routerLink="/tasks" routerLinkActive="active">Tasks</li>
+</ul>
+
+
+  </aside>
+
+  <!-- MAIN AREA -->
+
+  <div class="main">
+
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="header-left">
+    <h3>Manager Dashboard</h3>
   </div>
 
-  <!-- Dynamic Content -->
-  <div class="main">
+  <div class="header-right">
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+
+</header>
+
+<!-- CONTENT -->
+<div class="content">
+  <div class="page-container">
     <router-outlet></router-outlet>
+  </div>
+</div>
+
+
   </div>
 
 </div>

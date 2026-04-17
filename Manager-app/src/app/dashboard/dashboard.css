@@ -1,65 +1,61 @@
-.container {
-  display: flex;
-  height: 100vh;
+/* PAGE TITLE */
+h1 {
+font-size: 24px;
+font-weight: 600;
+color: #111827;
+margin-bottom: 10px;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 220px;
-  background: #2c3e50;
-  color: white;
-  padding: 20px;
-}
-
-.sidebar h2 {
-  margin-bottom: 20px;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.sidebar li:hover {
-  background: #34495e;
-}
-
-/* Main */
-.main {
-  flex: 1;
-  padding: 20px;
-  background: #f4f6f8;
-}
-
-/* Cards */
+/* CARDS CONTAINER */
 .cards {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
+display: flex;
+gap: 20px;
+justify-content: center; /* center align */
+flex-wrap: wrap; /* responsive */
+margin-top: 20px;
 }
 
+/* SINGLE CARD */
 .card {
-  flex: 1;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+flex: 1;
+min-width: 220px;
+max-width: 280px;
+background: white;
+padding: 20px;
+border-radius: 14px;
+text-align: center;
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+transition: all 0.2s ease;
 }
 
+/* CARD HOVER EFFECT */
+.card:hover {
+transform: translateY(-5px);
+}
+
+/* CARD TITLE */
 .card h3 {
-  margin-bottom: 10px;
+margin-bottom: 10px;
+font-size: 16px;
+color: #6b7280;
 }
 
+/* CARD VALUE */
 .card p {
-  font-size: 24px;
-  font-weight: bold;
+font-size: 26px;
+font-weight: bold;
+color: #111827;
 }
-.active {
-  background: #3c5e34;
+
+/* OPTIONAL COLORS (CAN USE LATER) */
+.card:nth-child(1) {
+border-top: 4px solid #2563eb; /* blue */
+}
+
+.card:nth-child(2) {
+border-top: 4px solid #16a34a; /* green */
+}
+
+.card:nth-child(3) {
+border-top: 4px solid #f59e0b; /* orange */
 }

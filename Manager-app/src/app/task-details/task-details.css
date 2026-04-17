@@ -1,49 +1,95 @@
-.card {
-  max-width: 500px;
-  margin: 30px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+/* FULL PAGE CENTER */
+.task-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
 }
 
-h2 {
-  margin-bottom: 20px;
-}
-
-p {
-  margin: 10px 0;
-}
-
-/* Form */
-label {
-  display: block;
-  margin-top: 10px;
-  font-weight: 500;
-}
-
-input, select {
+/* CARD */
+.task-card {
   width: 100%;
-  padding: 6px;
-  margin-top: 5px;
+  max-width: 900px;
+  background: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+.title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ROW (2 COLUMN GRID) */
+.row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+/* FIELD */
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* FULL WIDTH FIELD */
+.field.full {
+  flex: 100%;
+}
+
+/* LABEL */
+label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+/* VALUE TEXT */
+p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+  background: #f9fafb;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* INPUT + SELECT */
+input,
+select {
+  padding: 8px;
   border-radius: 6px;
   border: 1px solid #ddd;
+  font-size: 14px;
 }
 
-/* Buttons */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* ACTION BUTTONS */
 .actions {
   margin-top: 20px;
 }
 
+/* BUTTON BASE */
 button {
-  padding: 6px 12px;
+  padding: 7px 14px;
   margin-right: 10px;
+  border-radius: 8px;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
+  font-weight: 500;
 }
 
-/* Button Styles */
+/* BUTTON STYLES */
 .edit-btn {
   background: #eef2ff;
   color: #3f51b5;
@@ -54,11 +100,60 @@ button {
   color: #2e7d32;
 }
 
-.back-btn {
-  background: #f5f5f5;
-  color: #555;
+.back-btn,
+.cancel-btn {
+  background: #f3f4f6;
+  color: #374151;
 }
 
 button:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+}
+
+/* STATUS BADGE BASE */
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* PENDING */
+.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* COMPLETED */
+.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* PRIORITY BADGE BASE */
+.priority-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* HIGH PRIORITY */
+.high {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+/* MEDIUM PRIORITY */
+.medium {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* LOW PRIORITY */
+.low {
+  background: #e8f5e9;
+  color: #2e7d32;
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -12,27 +13,41 @@ import { FormsModule } from '@angular/forms';
 })
 export class TaskDetailComponent {
 
-  taskId: any;
+  taskId: number = 0;
   isEdit = false;
+  isNewTask = false;
 
   task: any = {
-    id: '',
+    id: 0,
     title: '',
+    description: '',
     assignedTo: '',
     priority: '',
     dueDate: '',
-    status: ''
+    status: 'Pending'
   };
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.taskId = this.route.snapshot.paramMap.get('id');
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private taskService: TaskService
+  ) {
+    const id = this.route.snapshot.paramMap.get('id');
 
-    // Fake data (later replace with service)
-    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-    const found = tasks.find((t: any) => t.id == this.taskId);
+    if (id) {
+      // EDIT MODE
+      this.taskId = Number(id);
 
-    if (found) {
-      this.task = { ...found };
+      const tasks = this.taskService.getTasks();
+      const found = tasks.find((t: any) => t.id === this.taskId);
+
+      if (found) {
+        this.task = { ...found };
+      }
+    } else {
+      //  ADD MODE
+      this.isNewTask = true;
+      this.isEdit = true;
     }
   }
 
@@ -41,14 +56,21 @@ export class TaskDetailComponent {
   }
 
   saveTask() {
-    let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    let tasks = this.taskService.getTasks();
 
-    tasks = tasks.map((t: any) =>
-      t.id == this.task.id ? this.task : t
-    );
+    if (this.isNewTask) {
+      // ADD TASK
+      this.task.id = Date.now();
+      tasks.push(this.task);
+    } else {
+      //  UPDATE TASK
+      tasks = tasks.map((t: any) =>
+        t.id === this.task.id ? this.task : t
+      );
+    }
 
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    this.isEdit = false;
+    this.taskService.saveTasks(tasks);
+    this.router.navigate(['/tasks']);
   }
 
   goBack() {

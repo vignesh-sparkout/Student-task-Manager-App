@@ -3,8 +3,9 @@ import { LoginComponent } from './login/login';
 import { DashboardComponent } from './dashboard/dashboard';
 import { TaskList } from './task-list/task-list';
 import { LayoutComponent } from './layout/layout';
-import { authChildGuard } from './auth-guard';
+import { authGuard } from './auth-guard';
 import { TaskDetailComponent } from './task-details/task-details';
+
 
 export const routes: Routes = [
 
@@ -15,13 +16,14 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivateChild: [authChildGuard],
+    canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'tasks', component: TaskList },
       { path: 'task/:id', component: TaskDetailComponent }
     ]
   },
+  { path: 'add-task', component: TaskDetailComponent },
 
   { path: '**', redirectTo: 'login' }
 ];

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,34 +11,42 @@ import { RouterModule } from '@angular/router';
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
-  constructor(private auth: AuthService) {}
+  tasks: any[] = [];
 
-  tasks = [
-    { title: 'Task 1', completed: true },
-    { title: 'Task 2', completed: false },
-    { title: 'Task 3', completed: true },
-    { title: 'Task 4', completed: false }
-  ];
+  constructor(
+    private auth: AuthService,
+    private taskService: TaskService,
+    private router: Router
+  ) {
+    //  AUTO UPDATE WHEN NAVIGATE
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.loadTasks();
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.loadTasks();
+  }
+
+  loadTasks() {
+    this.tasks = this.taskService.getTasks();
+  }
 
   get totalTasks(){
-      return this.tasks.length;
+    return this.tasks.length;
   }
+
   get completedTasks(){
-    return this.tasks.filter(t => t.completed). length;
+    return this.tasks.filter(t => t.status === 'Completed').length;
   }
+
   get pendingTasks(){
-    return this.tasks.filter(t => !t.completed).length;
+    return this.tasks.filter(t => t.status === 'Pending').length;
   }
-
-  markComplete(task: any) {
-  task.status = 'Completed';
-}
-
-deleteTask(task: any) {
-  this.tasks = this.tasks.filter(t => t !== task);
-}
 
   logout() {
     this.auth.logout();

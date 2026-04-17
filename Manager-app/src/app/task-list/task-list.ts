@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -12,24 +13,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class TaskList implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private taskService: TaskService) {
 
-  showForm = false;
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.tasks = this.taskService.getTasks();
+      }
+    });
 
-  newTask: any = {
-    id: 0,
-    title: '',
-    description: '',
-    assignedTo: '',
-    priority: '',
-    dueDate: '',
-    status: 'Pending'
-  };
+  }
 
-  //  FINAL TASK LIST (STATIC + LOCAL)
   tasks: any[] = [];
 
-  // DEFAULT TASKS (ONLY ON FIRST LOAD)
   defaultTasks = [
     {
       id: 101,
@@ -46,84 +41,30 @@ export class TaskList implements OnInit {
       priority: 'Medium',
       dueDate: '2026-04-18',
       status: 'Pending'
-    },
-    {
-      id: 103,
-      title: 'API Integration',
-      assignedTo: 'Vicky',
-      priority: 'High',
-      dueDate: '2026-04-22',
-      status: 'Pending'
-    },
-    {
-      id: 104,
-      title: 'Dashboard UI',
-      assignedTo: 'Kishore',
-      priority: 'Low',
-      dueDate: '2026-04-25',
-      status: 'Completed'
     }
   ];
 
   ngOnInit() {
-    const saved = localStorage.getItem('tasks');
+    const saved = this.taskService.getTasks();
 
-    if (saved) {
-      this.tasks = JSON.parse(saved);
+    if (saved.length > 0) {
+      this.tasks = saved;
     } else {
       this.tasks = this.defaultTasks;
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      this.taskService.saveTasks(this.tasks);
     }
   }
 
-  openForm() {
-    this.showForm = true;
-  }
-
-  addTask(form: any) {
-    if (form.invalid) return;
-
-    this.newTask.id = Date.now();
-
-    this.tasks.push({ ...this.newTask });
-
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-
-    this.newTask = {
-      id: 0,
-      title: '',
-      description: '',
-      assignedTo: '',
-      priority: '',
-      dueDate: '',
-      status: 'Pending'
-    };
-
-    this.showForm = false;
+  addTaskPage() {
+    this.router.navigate(['/add-task']);
   }
 
   viewTask(task: any) {
     this.router.navigate(['/task', task.id]);
   }
-  //Edit Task
-  isEditMode = false;
-editingTaskId: number | null = null;
-
-editTask(task: any) {
-  this.isEditMode = true;
-  this.showForm = true;
-  this.editingTaskId = task.id;
-
-  this.newTask = { ...task }; // pre-fill form
-}
-
-  markComplete(task: any) {
-    task.status = 'Completed';
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-  }
 
   deleteTask(task: any) {
-    this.tasks = this.tasks.filter(t => t !== task);
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.tasks = this.tasks.filter((t: any) => t.id !== task.id);
+    this.taskService.saveTasks(this.tasks);
   }
 }

@@ -1,38 +1,13 @@
-<h2>Task List</h2>
-
+<h2 class="page-title">Task List</h2>
 
 <!-- ADD TASK BUTTON -->
-<button class="add-btn" (click)="openForm()">+ Add Task</button>
 
-<!-- FORM -->
-<form *ngIf="showForm" #taskForm="ngForm" (ngSubmit)="addTask(taskForm)" class="task-form">
-
-  <input type="text" name="title" [(ngModel)]="newTask.title" placeholder="Task Title" required #title="ngModel">
-  <small *ngIf="title.invalid && title.touched">Title is required</small>
-
-  <textarea name="description" [(ngModel)]="newTask.description" placeholder="Description" required #desc="ngModel"></textarea>
-  <small *ngIf="desc.invalid && desc.touched">Description is required</small>
-
-  <input type="text" name="assignedTo" [(ngModel)]="newTask.assignedTo" placeholder="Assigned To" required #assigned="ngModel">
-  <small *ngIf="assigned.invalid && assigned.touched">Assigned To is required</small>
-
-  <select name="priority" [(ngModel)]="newTask.priority" required #priority="ngModel">
-    <option value="">Select Priority</option>
-    <option>High</option>
-    <option>Medium</option>
-    <option>Low</option>
-  </select>
-  <small *ngIf="priority.invalid && priority.touched">Priority is required</small>
-
-  <input type="date" name="dueDate" [(ngModel)]="newTask.dueDate" required #date="ngModel">
-  <small *ngIf="date.invalid && date.touched">Due Date is required</small>
-
-  <button type="submit" class="save-btn">Save</button>
-  <button type="button" class="cancel-btn" (click)="showForm=false">Cancel</button>
-
-</form>
+<div class="top-bar">
+  <button class="add-btn" (click)="addTaskPage()">+ Add Task</button>
+</div>
 
 <!-- TABLE -->
+
 <table class="task-table">
 
   <thead>
@@ -48,28 +23,57 @@
 
   <tbody>
 
-    <tr *ngFor="let task of tasks"
-        [ngClass]="{ 'high-priority-row': task.priority === 'High' }">
+```
+<tr *ngFor="let task of tasks">
 
-      <td>{{ task.title }}</td>
-      <td>{{ task.assignedTo }}</td>
-      <td>{{ task.priority }}</td>
-      <td>{{ task.dueDate }}</td>
+  <td>{{ task.title }}</td>
 
-      <td>
-        <span [class.completed]="task.status === 'Completed'"
-              [class.pending]="task.status === 'Pending'">
-          {{ task.status }}
-        </span>
-      </td>
+  <td>{{ task.assignedTo }}</td>
 
-      <td>
-        <button class="view-btn" (click)="viewTask(task)">View</button>
-        <button class="complete-btn" (click)="markComplete(task)">Complete</button>
-        <button class="delete-btn" (click)="deleteTask(task)">Delete</button>
-      </td>
+  <!-- PRIORITY BADGE -->
+  <td>
+    <span
+      [ngClass]="{
+        'priority-badge': true,
+        'high': task.priority === 'High',
+        'medium': task.priority === 'Medium',
+        'low': task.priority === 'Low'
+      }"
+    >
+      {{ task.priority }}
+    </span>
+  </td>
 
-    </tr>
+  <td>{{ task.dueDate }}</td>
+
+  <!-- STATUS BADGE -->
+  <td>
+    <span
+      [ngClass]="{
+        'status-badge': true,
+        'completed': task.status === 'Completed',
+        'pending': task.status === 'Pending'
+      }"
+    >
+      {{ task.status }}
+    </span>
+  </td>
+
+  <!-- ACTION BUTTONS -->
+  <td>
+    <button class="view-btn" (click)="viewTask(task)">View</button>
+    <button class="delete-btn" (click)="deleteTask(task)">Delete</button>
+  </td>
+
+</tr>
+
+<!-- EMPTY STATE -->
+<tr *ngIf="tasks.length === 0">
+  <td colspan="6" class="empty">
+    No tasks available
+  </td>
+</tr>
+```
 
   </tbody>
 

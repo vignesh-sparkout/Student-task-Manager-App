@@ -1,89 +1,74 @@
+/* FULL PAGE CENTER */
 .login-page {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  background: #f8fafc;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #eef2f7, #f8fafc);
+  padding: 20px;
 }
 
+/* LOGIN BOX */
 .login-card {
-  width: min(100%, 420px);
-  padding: 32px;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  width: 360px;              
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
 }
 
+/* TITLE */
 h2 {
-  margin: 0;
-  font-size: 1.75rem;
-  color: #0f172a;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #1f2937;
 }
 
-.subtitle {
-  margin: 8px 0 24px;
-  color: #475569;
-  line-height: 1.5;
-}
-
-.field-label {
-  margin: 0 0 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #1e293b;
-}
-
+/* INPUTS */
 input {
-  width: 100%;
+  width: 100%;               /* inside card only */
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
   box-sizing: border-box;
-  margin-bottom: 16px;
-  padding: 12px 14px;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  background: #ffffff;
-  font-size: 1rem;
-  color: #0f172a;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 input:focus {
-  outline: none;
   border-color: #2563eb;
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
+/* ERROR */
+small {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
 button {
-  margin-top: 8px;
-  padding: 12px 16px;
-  border: 0;
-  border-radius: 10px;
-  background: #3364d6;
-  color: #fff;
-  font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
 }
 
 button:hover {
-  background: #4671ba;
+  background: #1d4ed8;
 }
 
-@media (max-width: 480px) {
-  .login-card {
-    padding: 24px 20px;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-  .action {display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-   }
+button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
 }

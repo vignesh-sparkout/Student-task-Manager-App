@@ -1,18 +1,17 @@
-<section class="login-page">
+<div class="login-page">
   <div class="login-card">
-    <h2>Login</h2>
-    <p class="subtitle">Enter your details </p>
 
-    <label class="field-label" for="username">Username</label>
-    <input id="username" [(ngModel)]="username" placeholder="Enter username" />
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="login-form">
+      <h2>Login</h2>
 
-    <label class="field-label" for="password">Password</label>
-    <input
-      id="password"
-      [(ngModel)]="password"
-      type="password"
-      placeholder="Enter password"
-    />
-    <button type="button" (click)="login()">Login</button>
+      <input type="text" name="username" [(ngModel)]="username" placeholder="Username" required #user="ngModel" />
+      <small *ngIf="user.invalid && user.touched">Username is required</small>
+
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required minlength="4" #pass="ngModel" />
+      <small *ngIf="pass.invalid && pass.touched">Password is required</small>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
   </div>
-</section>
+</div>
