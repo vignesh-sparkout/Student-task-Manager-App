@@ -76,17 +76,21 @@ select:focus {
 
 /* ACTION BUTTONS */
 .actions {
-  margin-top: 20px;
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
 }
 
 /* BUTTON BASE */
 button {
-  padding: 7px 14px;
-  margin-right: 10px;
-  border-radius: 8px;
+  padding: 10px 18px;   /* increased height */
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  min-width: 100px;
 }
 
 /* BUTTON STYLES */
@@ -95,15 +99,31 @@ button {
   color: #3f51b5;
 }
 
+.edit-btn:hover {
+  background: #e0e7ff;
+}
+
 .save-btn {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(16, 185, 129, 0.35);
 }
 
 .back-btn,
 .cancel-btn {
-  background: #f3f4f6;
-  color: #374151;
+  background: #ef4444;
+  color: white;
+}
+.cancel-btn:hover {
+    background: #dc2626;
+  transform: translateY(-2px);
+}
+button:active {
+  transform: scale(0.97);
 }
 
 button:hover {
@@ -156,4 +176,17 @@ button:hover {
 .low {
   background: #e8f5e9;
   color: #2e7d32;
+}
+
+/* VALIDATION RED BORDER */
+.invalid {
+  border: 1.5px solid #ef4444 !important;
+}
+
+/* ERROR TEXT */
+small {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
 }

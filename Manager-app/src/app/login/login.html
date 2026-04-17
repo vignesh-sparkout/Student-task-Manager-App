@@ -7,8 +7,9 @@
       <input type="text" name="username" [(ngModel)]="username" placeholder="Username" required #user="ngModel" />
       <small *ngIf="user.invalid && user.touched">Username is required</small>
 
-      <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required minlength="4" #pass="ngModel" />
-      <small *ngIf="pass.invalid && pass.touched">Password is required</small>
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required minlength="6" #pass="ngModel" />
+      <small *ngIf="pass.invalid && pass.touched">Password must be at least 6 characters </small>
+      <small *ngIf="errorMessage"> {{ errorMessage }}</small>
 
       <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>

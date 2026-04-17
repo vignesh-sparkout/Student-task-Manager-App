@@ -8,7 +8,7 @@ export const fakeApi: HttpInterceptorFn = (req, next) => {
 
   // create default userx
   if (users.length === 0) {
-    users = [{ username: 'vicky', password: '1234' }];
+    users = [{ username: 'vicky', password: '123412' }];
     localStorage.setItem('users', JSON.stringify(users));
   }
 

@@ -20,10 +20,14 @@ export const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'tasks', component: TaskList },
+
+      //  FIX: ADD TASK INSIDE LAYOUT
+      { path: 'add-task', component: TaskDetailComponent },
+
+      // EDIT TASK
       { path: 'task/:id', component: TaskDetailComponent }
     ]
   },
-  { path: 'add-task', component: TaskDetailComponent },
 
   { path: '**', redirectTo: 'login' }
 ];

@@ -24,7 +24,7 @@ export class TaskDetailComponent {
     assignedTo: '',
     priority: '',
     dueDate: '',
-    status: 'Pending'
+    status: ''
   };
 
   constructor(
@@ -35,7 +35,6 @@ export class TaskDetailComponent {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id) {
-      // EDIT MODE
       this.taskId = Number(id);
 
       const tasks = this.taskService.getTasks();
@@ -45,7 +44,6 @@ export class TaskDetailComponent {
         this.task = { ...found };
       }
     } else {
-      //  ADD MODE
       this.isNewTask = true;
       this.isEdit = true;
     }
@@ -55,15 +53,15 @@ export class TaskDetailComponent {
     this.isEdit = true;
   }
 
-  saveTask() {
+  saveTask(form: any) {
+    if (form.invalid) return;
+
     let tasks = this.taskService.getTasks();
 
     if (this.isNewTask) {
-      // ADD TASK
       this.task.id = Date.now();
       tasks.push(this.task);
     } else {
-      //  UPDATE TASK
       tasks = tasks.map((t: any) =>
         t.id === this.task.id ? this.task : t
       );
