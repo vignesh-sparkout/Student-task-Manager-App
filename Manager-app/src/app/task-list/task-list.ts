@@ -13,29 +13,53 @@ import { TaskService } from '../service/task.service';
 })
 export class TaskList implements OnInit {
 
-  constructor(private router: Router, private taskService: TaskService) {
+  tasks: any[] = [];
 
+  //  POPUP STATE
+  showDeletePopup = false;
+  selectedTask: any = null;
+
+  constructor(
+    private router: Router,
+    private taskService: TaskService
+  ) {
+    // AUTO REFRESH WHEN NAVIGATE
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.tasks = this.taskService.getTasks();
       }
     });
-
   }
 
-  tasks: any[] = [];
-
+  // DEFAULT DATA
   defaultTasks = [
     {
       id: 101,
       title: 'Design UI Layout',
-      assignedTo: 'Arun',
+      assignedTo: 'Aravindh',
       priority: 'High',
-      dueDate: '2026-04-20',
+      dueDate: '20-04-2026',
       status: 'Completed'
     },
-    {
+     {
       id: 102,
+      title: 'Login Page Validation',
+      assignedTo: 'Vicky',
+      priority: 'High',
+      dueDate: '22-04-2026',
+      status: 'Completed'
+    },
+     {
+      id: 103,
+      title: 'API intergration',
+      assignedTo: 'Keerthi',
+      priority: 'High',
+      dueDate: '22-04-2026',
+      status: 'Completed'
+    },
+
+    {
+      id: 104,
       title: 'Fix Routing Issue',
       assignedTo: 'Tamil',
       priority: 'Medium',
@@ -55,16 +79,37 @@ export class TaskList implements OnInit {
     }
   }
 
+  //  NAVIGATE TO ADD TASK
   addTaskPage() {
     this.router.navigate(['/add-task']);
   }
 
+  //  VIEW TASK
   viewTask(task: any) {
     this.router.navigate(['/task', task.id]);
   }
 
+  //  OPEN DELETE POPUP
   deleteTask(task: any) {
-    this.tasks = this.tasks.filter((t: any) => t.id !== task.id);
+    this.selectedTask = task;
+    this.showDeletePopup = true;
+  }
+
+  //  CONFIRM DELETE
+  confirmDelete() {
+    this.tasks = this.tasks.filter(
+      (t: any) => t.id !== this.selectedTask.id
+    );
+
     this.taskService.saveTasks(this.tasks);
+
+    this.showDeletePopup = false;
+    this.selectedTask = null;
+  }
+
+  //  CANCEL DELETE
+  cancelDelete() {
+    this.showDeletePopup = false;
+    this.selectedTask = null;
   }
 }

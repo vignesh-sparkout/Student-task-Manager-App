@@ -1,13 +1,11 @@
 <h2 class="page-title">Task List</h2>
 
 <!-- ADD TASK BUTTON -->
-
 <div class="top-bar">
   <button class="add-btn" (click)="addTaskPage()">+ Add Task</button>
 </div>
 
 <!-- TABLE -->
-
 <table class="task-table">
 
   <thead>
@@ -23,57 +21,75 @@
 
   <tbody>
 
-<tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of tasks">
 
-  <td>{{ task.title }}</td>
+      <td>{{ task.title }}</td>
 
-  <td>{{ task.assignedTo }}</td>
+      <td>{{ task.assignedTo }}</td>
 
-  <!-- PRIORITY BADGE -->
-  <td>
-    <span
-      [ngClass]="{
-        'priority-badge': true,
-        'high': task.priority === 'High',
-        'medium': task.priority === 'Medium',
-        'low': task.priority === 'Low'
-      }"
-    >
-      {{ task.priority }}
-    </span>
-  </td>
+      <!-- PRIORITY BADGE -->
+      <td>
+        <span
+          [ngClass]="{
+            'priority-badge': true,
+            'high': task.priority === 'High',
+            'medium': task.priority === 'Medium',
+            'low': task.priority === 'Low'
+          }"
+        >
+          {{ task.priority }}
+        </span>
+      </td>
 
-  <td>{{ task.dueDate }}</td>
+      <td>{{ task.dueDate }}</td>
 
-  <!-- STATUS BADGE -->
-  <td>
-    <span
-      [ngClass]="{
-        'status-badge': true,
-        'completed': task.status === 'Completed',
-        'pending': task.status === 'Pending'
-      }"
-    >
-      {{ task.status }}
-    </span>
-  </td>
+      <!-- STATUS BADGE -->
+      <td>
+        <span
+          [ngClass]="{
+            'status-badge': true,
+            'completed': task.status === 'Completed',
+            'pending': task.status === 'Pending'
+          }"
+        >
+          {{ task.status }}
+        </span>
+      </td>
 
-  <!-- ACTION BUTTONS -->
-  <td>
-    <button class="view-btn" (click)="viewTask(task)">View</button>
-    <button class="delete-btn" (click)="deleteTask(task)">Delete</button>
-  </td>
+      <!-- ACTION BUTTONS -->
+      <td>
+        <button class="view-btn" (click)="viewTask(task)">View</button>
+        <button class="delete-btn" (click)="deleteTask(task)">Delete</button>
+      </td>
 
-</tr>
+    </tr>
 
-<!-- EMPTY STATE -->
-<tr *ngIf="tasks.length === 0">
-  <td colspan="6" class="empty">
-    No tasks available
-  </td>
-</tr>
-
+    <!-- EMPTY STATE -->
+    <tr *ngIf="tasks.length === 0">
+      <td colspan="6" class="empty">
+        No tasks available
+      </td>
+    </tr>
 
   </tbody>
 
 </table>
+
+<!-- ✅ DELETE CONFIRM POPUP -->
+<div class="popup-overlay" *ngIf="showDeletePopup">
+
+  <div class="popup-box">
+    <h3>Delete Task</h3>
+
+    <p>
+      Are you sure you want to delete 
+      <b>"{{ selectedTask?.title }}"</b>?
+    </p>
+
+    <div class="popup-actions">
+      <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+      <button class="delete-btn" (click)="confirmDelete()">Delete</button>
+    </div>
+  </div>
+
+</div>

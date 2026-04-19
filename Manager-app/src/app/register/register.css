@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -6,8 +6,8 @@
   background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-/* CARD */
-.login-card {
+/* SAME CARD DESIGN */
+.register-card {
   width: 400px;
   background: #fff;
   padding: 35px 30px;
@@ -16,17 +16,17 @@
 }
 
 /* HEADER */
-.login-header {
+.header {
   text-align: center;
   margin-bottom: 25px;
 }
 
-.login-header h1 {
+.header h1 {
   font-size: 26px;
   font-weight: 700;
 }
 
-.login-header p {
+.header p {
   font-size: 14px;
   color: #6b7280;
 }
@@ -54,14 +54,13 @@ input {
   transition: 0.2s;
 }
 
-/* FOCUS */
 input:focus {
   border-color: #6366f1;
   outline: none;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* ❌ REMOVE BACKGROUND COLORS */
+/* ONLY BORDER COLOR */
 .invalid-input {
   border-color: #ef4444 !important;
 }
@@ -74,13 +73,13 @@ input:focus {
 .error {
   color: #ef4444;
   font-size: 12px;
-  margin-top: 5px;
 }
 
-.error-msg {
+.success {
+  color: #16a34a;
+  font-size: 12px;
   text-align: center;
   margin-bottom: 10px;
-  color: #ef4444;
 }
 
 /* BUTTON */
@@ -96,22 +95,17 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  transform: translateY(-2px);
-}
-
 button:disabled {
   background: #c7d2fe;
-  cursor: not-allowed;
 }
 
 /* LINK */
-.register-link {
+.login-link {
   text-align: center;
   margin-top: 12px;
 }
 
-.register-link span {
+.login-link span {
   color: #6366f1;
   cursor: pointer;
 }

@@ -17,22 +17,27 @@ export class LoginComponent {
   password = '';
   submitted = false;
   errorMessage = '';
-constructor(private auth: AuthService, private router: Router) {}
-login(form: any) {
-  this.submitted = true;
-  this.errorMessage = ''; // reset error
 
-  if (form.invalid) return;
+  constructor(private auth: AuthService, private router: Router) {}
 
-  this.auth.login(this.username, this.password).subscribe({
-    next: () => {
-      this.router.navigate(['/dashboard']);
-    },
-    error: (err: any) => {
-      this.errorMessage = err.message; //  show only API error
-    }
+  login(form: any) {
+    this.submitted = true;
+    this.errorMessage = '';
 
-  
+    if (form.invalid) return;
+
+    this.auth.login(this.username, this.password).subscribe({
+      next: () => {
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err: any) => {
+        this.errorMessage = err.message;
+      }
     });
   }
-}   
+
+  // ✅ NAVIGATE TO REGISTER
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+}

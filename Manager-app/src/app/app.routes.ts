@@ -5,6 +5,7 @@ import { TaskList } from './task-list/task-list';
 import { LayoutComponent } from './layout/layout';
 import { authGuard } from './auth-guard';
 import { TaskDetailComponent } from './task-details/task-details';
+import { RegisterComponent } from './register/register';
 
 
 export const routes: Routes = [
@@ -12,6 +13,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
   {
     path: '',
