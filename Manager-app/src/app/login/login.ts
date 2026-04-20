@@ -35,8 +35,11 @@ export class LoginComponent {
       }
     });
   }
+  onInputChange() {
+  this.errorMessage = '';
+}
 
-  // ✅ NAVIGATE TO REGISTER
+  //  NAVIGATE TO REGISTER
   goToRegister() {
     this.router.navigate(['/register']);
   }

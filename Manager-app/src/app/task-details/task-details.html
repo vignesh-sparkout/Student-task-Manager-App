@@ -2,10 +2,11 @@
 
   <div class="task-card">
 
-    <h2 class="title">Task Details</h2>
-
+  <h2 class="title">
+  {{ isNewTask ? 'Add Task' : (isEdit ? 'Edit Task' : 'Task Details') }}
+</h2>
     <!-- VIEW MODE -->
-    <div *ngIf="!isEdit" class="view-mode">
+    <div *ngIf="!isEdit">
 
       <!-- ROW 1 -->
       <div class="row">
@@ -34,16 +35,14 @@
       <div class="row">
         <div class="field">
           <label class="heading">Priority</label>
-          <div>
-            <span class="badge priority-badge"
-              [ngClass]="{
-                'high': task.priority === 'High',
-                'medium': task.priority === 'Medium',
-                'low': task.priority === 'Low'
-              }">
-              {{ task.priority }}
-            </span>
-          </div>
+          <span class="badge"
+            [ngClass]="{
+              'high': task.priority === 'High',
+              'medium': task.priority === 'Medium',
+              'low': task.priority === 'Low'
+            }">
+            {{ task.priority }}
+          </span>
         </div>
 
         <div class="field">
@@ -56,31 +55,30 @@
       <div class="row">
         <div class="field">
           <label class="heading">Status</label>
-          <div>
-            <span class="badge status-badge"
-              [ngClass]="{
-                'pending': task.status === 'Pending',
-                'completed': task.status === 'Completed'
-              }">
-              {{ task.status }}
-            </span>
-          </div>
+          <span class="badge"
+            [ngClass]="{
+              'pending': task.status === 'Pending',
+              'completed': task.status === 'Completed'
+            }">
+            {{ task.status }}
+          </span>
         </div>
       </div>
 
       <!-- ACTIONS -->
       <div class="actions">
-        <button class="edit-btn" (click)="enableEdit()">✏ Edit</button>
+        <button class="edit-btn" (click)="enableEdit()">Edit</button>
         <button class="back-btn" (click)="goBack()">Back</button>
       </div>
 
     </div>
 
     <!-- EDIT MODE -->
-    <div *ngIf="isEdit" class="edit-mode">
+    <div *ngIf="isEdit">
 
       <form #taskForm="ngForm">
 
+        <!-- TITLE + ASSIGNED -->
         <div class="row">
           <div class="field">
             <label class="heading">Title</label>
@@ -99,6 +97,7 @@
           </div>
         </div>
 
+        <!-- DESCRIPTION -->
         <div class="row">
           <div class="field full">
             <label class="heading">Description</label>
@@ -110,6 +109,7 @@
           </div>
         </div>
 
+        <!-- PRIORITY + DATE -->
         <div class="row">
           <div class="field">
             <label class="heading">Priority</label>
@@ -129,6 +129,7 @@
           </div>
         </div>
 
+        <!-- STATUS -->
         <div class="row">
           <div class="field">
             <label class="heading">Status</label>
@@ -143,15 +144,16 @@
 
       </form>
 
+      <!-- ACTIONS -->
       <div class="actions">
         <button class="save-btn" [disabled]="taskForm.invalid" (click)="saveTask(taskForm)">
           Save
         </button>
-
         <button class="cancel-btn" (click)="goBack()">Cancel</button>
 
-        <div class="toast success" *ngIf="showSuccessToast">
-          ✔ Task saved successfully!
+        <!-- TOAST -->
+        <div class="toast" *ngIf="showSuccessToast">
+          Task saved successfully!
         </div>
       </div>
 

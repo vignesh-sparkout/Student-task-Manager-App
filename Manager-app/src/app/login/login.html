@@ -17,6 +17,7 @@
           type="text"
           name="username"
           [(ngModel)]="username"
+          (input)="onInputChange()"
           required
           #user="ngModel"
           placeholder="Enter your username"
@@ -36,9 +37,10 @@
         <label>Password</label>
 
         <input 
-          type="password"
+            type="password"
           name="password"
           [(ngModel)]="password"
+          (input)="onInputChange()"
           required
           minlength="6"
           #pass="ngModel"
@@ -58,7 +60,7 @@
         </small>
 
         <!-- API ERROR -->
-      <small class="error-msg" *ngIf="errorMessage">
+      <small class="error-msg" *ngIf="errorMessage && submitted">
         {{ errorMessage }}
       </small>
       </div>

@@ -11,16 +11,23 @@
 }
 
 .add-btn {
-  padding: 7px 14px;
-  background: #eef2ff;
-  border: 1px solid #c5cae9;
-  border-radius: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
+  transition: 0.3s ease;
 }
 
 .add-btn:hover {
-  background: #e0e7ff;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(37, 99, 235, 0.3);
+}
+
+.add-btn:active {
+  transform: scale(0.97);
 }
 
 /* TABLE */
@@ -103,21 +110,29 @@ button {
   background-color: #eef2ff;
   color: #3f51b5;
   border: 1px solid #c5cae9;
+  transition: all 0.25s ease;
 }
 
 .view-btn:hover {
-  background-color: #e0e7ff;
+  background-color: #3f51b5;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(63, 81, 181, 0.3)
 }
 
 /* DELETE BUTTON */
 .delete-btn {
-  background-color: #fdecea;
+ background-color: #fdecea;
   color: #c0392b;
   border: 1px solid #f5c6cb;
+  transition: all 0.25s ease;
 }
 
 .delete-btn:hover {
-  background-color: #f9d6d5;
+  background-color: #ef4444;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.35);
 }
 
 /* EMPTY */
@@ -132,7 +147,7 @@ button {
   background-color: #f9f9f9;
 }
 
-/* ================= POPUP ================= */
+/*  POPUP 
 
 /* OVERLAY */
 .popup-overlay {

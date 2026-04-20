@@ -85,15 +85,17 @@
 /* LOGOUT BUTTON */
 .logout-btn {
   background: #ef4444;
-  color: white;
+  color: #fff;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 6px;
-  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .logout-btn:hover {
   background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
 }
 
 /* CONTENT */

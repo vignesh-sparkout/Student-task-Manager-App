@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-// import { CookieService } from './cookie.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private router: Router, private http: HttpClient, /*private cookie:CookieService*/) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
-login(username: string, password: string) {
-  return this.http.post('/login', { username, password });
-}
+  login(username: string, password: string) {
+    return this.http.post<any>('/login', { username, password });
+  }
 
-logout() {
-    //  this.cookie.delete('token');
-  localStorage.removeItem('token');
-  this.router.navigate(['/login']);
-}
+  register(user: any) {
+    return this.http.post<any>('/register', user);
+  }
 
-isLoggedIn(): boolean {
-  return !!localStorage.getItem('token');
-      // return !!this.cookie.get('token');
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
+  }
 
-
-}
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    return token !== null && token !== '';
+  }
 }

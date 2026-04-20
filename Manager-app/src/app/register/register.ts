@@ -55,7 +55,7 @@ export class RegisterComponent {
     }, 1500);
   }
 
-  // ✅ NAVIGATE TO LOGIN
+  //  NAVIGATE TO LOGIN
   goToLogin() {
     this.router.navigate(['/login']);
   }

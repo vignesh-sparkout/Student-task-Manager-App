@@ -6,36 +6,63 @@ export const fakeApi: HttpInterceptorFn = (req, next) => {
 
   let users = JSON.parse(localStorage.getItem('users') || '[]');
 
-  // create default userx
-  if (users.length === 0) {
-    users = [{ username: '', password: '' }];
+  // REGISTER
+  if (req.url.endsWith('/register') && req.method === 'POST') {
+
+    const newUser = req.body as any;
+
+    const exists = users.find(
+      (u: any) => u.username === newUser.username
+    );
+
+    if (exists) {
+      return throwError(() => ({
+        status: 400,
+        message: 'User already exists'
+      }));
+    }
+
+    users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
+
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: { message: 'Registration successful' }
+      })
+    ).pipe(delay(800));
   }
 
-  // LOGIN API
+  // LOGIN 
   if (req.url.endsWith('/login') && req.method === 'POST') {
+
     const { username, password } = req.body as any;
 
     const user = users.find(
-      (x: any) => x.username === username && x.password === password
+      (u: any) => u.username === username && u.password === password
     );
 
-    if (user) {
- const fakeToken = 'jwt-token-mnbvcxz'; 
-
-    localStorage.setItem('token', fakeToken);
-      return of(
-        new HttpResponse({
-          status: 200,
-          body: { message: 'Login success ' }
-        })
-      ).pipe(delay(1000));
-    } else {
+    if (!user) {
       return throwError(() => ({
         status: 401,
         message: 'Invalid credentials'
       }));
     }
+
+    // FAKE TOKEN
+    const fakeToken = 'jwt-token-123456';
+
+    localStorage.setItem('token', fakeToken);
+
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: {
+          user,
+          token: fakeToken
+        }
+      })
+    ).pipe(delay(800));
   }
 
   return next(req);
