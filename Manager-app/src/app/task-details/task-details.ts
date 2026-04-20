@@ -16,6 +16,7 @@ export class TaskDetailComponent {
   taskId: number = 0;
   isEdit = false;
   isNewTask = false;
+  showSuccessToast = false;
 
   task: any = {
     id: 0,
@@ -68,7 +69,11 @@ export class TaskDetailComponent {
     }
 
     this.taskService.saveTasks(tasks);
+    this.showSuccessToast = true;
+    setTimeout(() => {
+    this.showSuccessToast = false;
     this.router.navigate(['/tasks']);
+  }, 2000)
   }
 
   goBack() {

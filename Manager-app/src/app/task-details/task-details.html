@@ -158,6 +158,11 @@
           Save
         </button>
 
+        <!--  SUCCESS TOAST -->
+      <div class="toast success" *ngIf="showSuccessToast">
+          ✔ Task saved successfully!
+      </div>
+
         <button class="cancel-btn" type="button" (click)="goBack()">
           Cancel
         </button>
