@@ -8,7 +8,7 @@ export const fakeApi: HttpInterceptorFn = (req, next) => {
 
   // create default userx
   if (users.length === 0) {
-    users = [{ username: 'vicky', password: '123412' }];
+    users = [{ username: '', password: '' }];
     localStorage.setItem('users', JSON.stringify(users));
   }
 
@@ -21,12 +21,7 @@ export const fakeApi: HttpInterceptorFn = (req, next) => {
     );
 
     if (user) {
- const fakeToken = 'jwt-token-123456'; //  FAKE TOKEN
-//       document.cookie = `token=${fakeToken}; path=/`;
-//       const date = new Date();
-// date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000)); // 1 day
-
-// document.cookie = `token=${fakeToken}; expires=${date.toUTCString()}; path=/`;
+ const fakeToken = 'jwt-token-mnbvcxz'; 
 
     localStorage.setItem('token', fakeToken);
       return of(

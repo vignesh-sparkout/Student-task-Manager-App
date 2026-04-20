@@ -1,6 +1,6 @@
 <h2 class="page-title">Task List</h2>
 
-<!-- ADD TASK BUTTON -->
+<!-- ADD BUTTON -->
 <div class="top-bar">
   <button class="add-btn" (click)="addTaskPage()">+ Add Task</button>
 </div>
@@ -24,10 +24,9 @@
     <tr *ngFor="let task of tasks">
 
       <td>{{ task.title }}</td>
-
       <td>{{ task.assignedTo }}</td>
 
-      <!-- PRIORITY BADGE -->
+      <!-- PRIORITY -->
       <td>
         <span
           [ngClass]="{
@@ -43,7 +42,7 @@
 
       <td>{{ task.dueDate }}</td>
 
-      <!-- STATUS BADGE -->
+      <!-- STATUS -->
       <td>
         <span
           [ngClass]="{
@@ -56,7 +55,7 @@
         </span>
       </td>
 
-      <!-- ACTION BUTTONS -->
+      <!-- ACTION -->
       <td>
         <button class="view-btn" (click)="viewTask(task)">View</button>
         <button class="delete-btn" (click)="deleteTask(task)">Delete</button>
@@ -64,25 +63,21 @@
 
     </tr>
 
-    <!-- EMPTY STATE -->
+    <!-- EMPTY -->
     <tr *ngIf="tasks.length === 0">
-      <td colspan="6" class="empty">
-        No tasks available
-      </td>
+      <td colspan="6" class="empty">No tasks available</td>
     </tr>
 
   </tbody>
-
 </table>
 
-<!-- ✅ DELETE CONFIRM POPUP -->
+<!-- DELETE POPUP -->
 <div class="popup-overlay" *ngIf="showDeletePopup">
-
   <div class="popup-box">
     <h3>Delete Task</h3>
 
     <p>
-      Are you sure you want to delete 
+      Are you sure you want to delete
       <b>"{{ selectedTask?.title }}"</b>?
     </p>
 
@@ -91,5 +86,9 @@
       <button class="delete-btn" (click)="confirmDelete()">Delete</button>
     </div>
   </div>
+</div>
 
+<!--  DELETE TOAST -->
+<div class="toast delete" *ngIf="showDeleteToast">
+   Task deleted successfully!
 </div>

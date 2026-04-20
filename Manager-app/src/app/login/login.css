@@ -1,9 +1,12 @@
 .login-page {
-  height: 100vh;
+  height: 100%;
   display: flex;
+  margin: 0;
+  padding: 0;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #667eea, #764ba2);
+
 }
 
 /* CARD */
@@ -61,7 +64,7 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* ❌ REMOVE BACKGROUND COLORS */
+/*  REMOVE BACKGROUND COLORS */
 .invalid-input {
   border-color: #ef4444 !important;
 }
@@ -78,9 +81,11 @@ input:focus {
 }
 
 .error-msg {
-  text-align: center;
-  margin-bottom: 10px;
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 5px;
   color: #ef4444;
+  font-size: 13px;
 }
 
 /* BUTTON */

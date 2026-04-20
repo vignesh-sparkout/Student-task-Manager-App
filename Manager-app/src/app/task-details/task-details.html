@@ -2,61 +2,75 @@
 
   <div class="task-card">
 
-    <h2 class="title">ADD TASK</h2>
+    <h2 class="title">Task Details</h2>
 
     <!-- VIEW MODE -->
     <div *ngIf="!isEdit" class="view-mode">
 
+      <!-- ROW 1 -->
       <div class="row">
         <div class="field">
-          <label>Title</label>
-          <p>{{ task.title }}</p>
+          <label class="heading">Title</label>
+          <div class="value">{{ task.title }}</div>
         </div>
 
         <div class="field">
-          <label>Assigned To</label>
-          <p>{{ task.assignedTo }}</p>
+          <label class="heading">Assigned To</label>
+          <div class="value">{{ task.assignedTo }}</div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="field">
-          <label>Priority</label>
-          <p
-            class="priority-badge"
-            [ngClass]="{
-              'high': task.priority === 'High',
-              'medium': task.priority === 'Medium',
-              'low': task.priority === 'Low'
-            }"
-          >
-            {{ task.priority }}
-          </p>
-        </div>
-
-        <div class="field">
-          <label>Due Date</label>
-          <p>{{ task.dueDate }}</p>
-        </div>
-      </div>
-
+      <!-- DESCRIPTION -->
       <div class="row">
         <div class="field full">
-          <label>Status</label>
-          <p
-            class="status-badge"
-            [ngClass]="{
-              'pending': task.status === 'Pending',
-              'completed': task.status === 'Completed'
-            }"
-          >
-            {{ task.status }}
-          </p>
+          <label class="heading">Description</label>
+          <div class="value description">
+            {{ task.description || 'No description provided' }}
+          </div>
         </div>
       </div>
 
+      <!-- ROW 2 -->
+      <div class="row">
+        <div class="field">
+          <label class="heading">Priority</label>
+          <div>
+            <span class="badge priority-badge"
+              [ngClass]="{
+                'high': task.priority === 'High',
+                'medium': task.priority === 'Medium',
+                'low': task.priority === 'Low'
+              }">
+              {{ task.priority }}
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="heading">Due Date</label>
+          <div class="value">{{ task.dueDate }}</div>
+        </div>
+      </div>
+
+      <!-- STATUS -->
+      <div class="row">
+        <div class="field">
+          <label class="heading">Status</label>
+          <div>
+            <span class="badge status-badge"
+              [ngClass]="{
+                'pending': task.status === 'Pending',
+                'completed': task.status === 'Completed'
+              }">
+              {{ task.status }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIONS -->
       <div class="actions">
-        <button class="edit-btn" (click)="enableEdit()">Edit</button>
+        <button class="edit-btn" (click)="enableEdit()">✏ Edit</button>
         <button class="back-btn" (click)="goBack()">Back</button>
       </div>
 
@@ -69,26 +83,16 @@
 
         <div class="row">
           <div class="field">
-            <label>Title</label>
-            <input
-              [(ngModel)]="task.title"
-              name="title"
-              required
-              #title="ngModel"
-              [ngClass]="{ 'invalid': title.invalid && title.touched }"
-            />
+            <label class="heading">Title</label>
+            <input [(ngModel)]="task.title" name="title" required #title="ngModel"
+              [ngClass]="{ 'invalid': title.invalid && title.touched }" />
             <small *ngIf="title.invalid && title.touched">Title is required</small>
           </div>
 
           <div class="field">
-            <label>Assigned To</label>
-            <input
-              [(ngModel)]="task.assignedTo"
-              name="assignedTo"
-              required
-              #assignedTo="ngModel"
-              [ngClass]="{ 'invalid': assignedTo.invalid && assignedTo.touched }"
-            />
+            <label class="heading">Assigned To</label>
+            <input [(ngModel)]="task.assignedTo" name="assignedTo" required #assignedTo="ngModel"
+              [ngClass]="{ 'invalid': assignedTo.invalid && assignedTo.touched }" />
             <small *ngIf="assignedTo.invalid && assignedTo.touched">
               Assigned To is required
             </small>
@@ -96,58 +100,44 @@
         </div>
 
         <div class="row">
-          <div class="field">
-            <label>Priority</label>
-            <select
-              [(ngModel)]="task.priority"
-              name="priority"
-              required
-              #priority="ngModel"
-              [ngClass]="{ 'invalid': priority.invalid && priority.touched }"
-            >
-              <option value="" disabled>Select the Priority</option>
-              <option>High</option>
-              <option>Medium</option>
-              <option>Low</option>
-            </select>
-            <small *ngIf="priority.invalid && priority.touched">
-              Priority is required
-            </small>
-          </div>
-
-          <div class="field">
-            <label>Due Date</label>
-            <input
-              type="date"
-              [(ngModel)]="task.dueDate"
-              name="dueDate"
-              required
-              #dueDate="ngModel"
-              [ngClass]="{ 'invalid': dueDate.invalid && dueDate.touched }"
-            />
-            <small *ngIf="dueDate.invalid && dueDate.touched">
-              Due Date is required
+          <div class="field full">
+            <label class="heading">Description</label>
+            <textarea [(ngModel)]="task.description" name="description" required #description="ngModel"
+              [ngClass]="{ 'invalid': description.invalid && description.touched }"></textarea>
+            <small *ngIf="description.invalid && description.touched">
+              Description is required
             </small>
           </div>
         </div>
 
         <div class="row">
-          <div class="field full">
-            <label>Status</label>
-            <select
-              [(ngModel)]="task.status"
-              name="status"
-              required
-              #status="ngModel"
-              [ngClass]="{ 'invalid': status.invalid && status.touched }"
-            >
-              <option value="" disabled>Select the Status</option>
+          <div class="field">
+            <label class="heading">Priority</label>
+            <select [(ngModel)]="task.priority" name="priority" required #priority="ngModel"
+              [ngClass]="{ 'invalid': priority.invalid && priority.touched }">
+              <option value="" disabled>Select Priority</option>
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="heading">Due Date</label>
+            <input type="date" [(ngModel)]="task.dueDate" name="dueDate" required #dueDate="ngModel"
+              [ngClass]="{ 'invalid': dueDate.invalid && dueDate.touched }" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label class="heading">Status</label>
+            <select [(ngModel)]="task.status" name="status" required #status="ngModel"
+              [ngClass]="{ 'invalid': status.invalid && status.touched }">
+              <option value="" disabled>Select Status</option>
               <option>Pending</option>
               <option>Completed</option>
             </select>
-            <small *ngIf="status.invalid && status.touched">
-              Status is required
-            </small>
           </div>
         </div>
 
@@ -158,14 +148,11 @@
           Save
         </button>
 
-        <!--  SUCCESS TOAST -->
-      <div class="toast success" *ngIf="showSuccessToast">
-          ✔ Task saved successfully!
-      </div>
+        <button class="cancel-btn" (click)="goBack()">Cancel</button>
 
-        <button class="cancel-btn" type="button" (click)="goBack()">
-          Cancel
-        </button>
+        <div class="toast success" *ngIf="showSuccessToast">
+          ✔ Task saved successfully!
+        </div>
       </div>
 
     </div>

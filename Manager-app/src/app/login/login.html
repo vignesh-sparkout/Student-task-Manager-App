@@ -56,12 +56,12 @@
         <small class="error" *ngIf="pass.errors?.['minlength'] && pass.touched">
           Minimum 6 characters required
         </small>
-      </div>
 
-      <!-- API ERROR -->
+        <!-- API ERROR -->
       <small class="error-msg" *ngIf="errorMessage">
         {{ errorMessage }}
       </small>
+      </div>
 
       <!-- BUTTON -->
       <button type="submit" [disabled]="loginForm.invalid">
