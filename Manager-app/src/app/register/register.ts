@@ -48,7 +48,7 @@ export class RegisterComponent {
 
     localStorage.setItem('users', JSON.stringify(users));
 
-    this.successMessage = 'Registration successful! Redirecting...';
+    this.successMessage = 'Registration successful!  ';
 
     setTimeout(() => {
       this.router.navigate(['/login']);

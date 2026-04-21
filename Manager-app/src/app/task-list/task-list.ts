@@ -16,7 +16,6 @@ export class TaskList implements OnInit {
 
   tasks: any[] = [];
 
-  // POPUP STATE
   showDeletePopup = false;
   selectedTask: any = null;
 
@@ -99,7 +98,7 @@ export class TaskList implements OnInit {
     this.showDeletePopup = true;
   }
 
-  // CONFIRM DELETE (WITH AUTO HIDE TOAST)
+  // CONFIRM DELETE 
   confirmDelete() {
   this.tasks = this.tasks.filter(
     (t: any) => t.id !== this.selectedTask.id

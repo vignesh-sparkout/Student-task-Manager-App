@@ -73,7 +73,7 @@ input, select, textarea {
   border: 1px solid #ddd;
 }
 
-/* ONLY BORDER VALIDATION (NO BACKGROUND COLOR) */
+/* BORDER VALIDATION */
 .invalid {
   border: 1.5px solid #ef4444;
 }
