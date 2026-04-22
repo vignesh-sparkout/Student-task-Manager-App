@@ -23,9 +23,11 @@ export class LoginComponent {
   login(form: any) {
     this.submitted = true;
     this.errorMessage = '';
+    console.log("Inside Form submit")
 
     if (form.invalid) return;
-
+      console.log("inside the log")
+      console.log(this.username, this.password)
     this.auth.login(this.username, this.password).subscribe({
       next: () => {
         this.router.navigate(['/dashboard']);

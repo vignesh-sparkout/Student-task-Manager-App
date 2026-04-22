@@ -33,7 +33,9 @@ export class TaskDetailComponent {
     private router: Router,
     private taskService: TaskService
   ) {
-    const id = this.route.snapshot.paramMap.get('id');
+        const id = this.route.snapshot.paramMap.get('id');
+        // const id = this.route.snapshot.queryParamMap.get('id');
+
 
     if (id) {
       this.taskId = Number(id);

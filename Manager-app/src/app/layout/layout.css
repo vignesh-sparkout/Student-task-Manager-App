@@ -89,6 +89,7 @@
   border: none;
   padding: 8px 14px;
   border-radius: 6px;
+  cursor: pointer;
   transition: all 0.25s ease;
 }
 

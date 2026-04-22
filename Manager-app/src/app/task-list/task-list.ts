@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../service/task.service';
 import { ChangeDetectorRef } from '@angular/core';
@@ -24,6 +24,7 @@ export class TaskList implements OnInit {
 
   constructor(
     private router: Router,
+    // private route: ActivatedRoute,
     private taskService: TaskService,
     private cdr: ChangeDetectorRef 
   ) {
@@ -89,7 +90,11 @@ export class TaskList implements OnInit {
 
   // VIEW TASK
   viewTask(task: any) {
-    this.router.navigate(['/task', task.id]);
+    this.router.navigate(['/task', task.id,]); 
+//     this.router.navigate(['/task'], {
+//   queryParams: { id: task.id }
+// });
+    console.log(task.id)
   }
 
   // OPEN DELETE POPUP

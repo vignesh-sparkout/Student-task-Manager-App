@@ -28,6 +28,8 @@ export const routes: Routes = [
 
       // EDIT TASK
       { path: 'task/:id', component: TaskDetailComponent }
+      // { path: 'task', component: TaskDetailComponent }
+
     ]
   },
 
